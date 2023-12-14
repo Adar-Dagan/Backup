@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Get the current profile from the environment variable
+current_profile=$AUTORANDR_CURRENT_CONFIG
+
+# Read the dpi associated with the current profile
+profile_dpi=$(grep $current_profile ~/.config/autorandr/dpis | cut -d ',' -f 2)
+
+# Get the current dpi using xrdb
+current_dpi=$(xrdb -query | grep -i dpi | cut -f 2)
+
+# Check if the dpi values are different
+if [ "$profile_dpi" != "$current_dpi" ]; then
+    # Overwrite the .Xresources file with the new dpi
+    echo "Xft.dpi: $profile_dpi" > ~/.Xresources
+
+    # Merge the .Xresources file
+    xrdb -merge ~/.Xresources
+
+    # Reload i3
+    i3-msg restart
+fi
+
