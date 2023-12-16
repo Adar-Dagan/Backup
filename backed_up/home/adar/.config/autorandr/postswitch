@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the current profile from the environment variable
-current_profile=$AUTORANDR_CURRENT_CONFIG
+current_profile=$AUTORANDR_CURRENT_PROFILE
 
 # Read the dpi associated with the current profile
 profile_dpi=$(grep $current_profile ~/.config/autorandr/dpis | cut -d ',' -f 2)
