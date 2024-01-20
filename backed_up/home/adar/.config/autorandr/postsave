@@ -1,9 +1,0 @@
-#!/bin/bash 
-
-dpi=$(xrdb -query | grep dpi | awk '{print $2}')
-
-# delete old dpi for this profile
-grep -v "^$AUTORANDR_CURRENT_PROFILE" ~/.config/autorandr/dpis > temp && mv temp ~/.config/autorandr/dpis
-
-echo "$AUTORANDR_CURRENT_PROFILE,$dpi" >> ~/.config/autorandr/dpis
-
