@@ -8,7 +8,8 @@ eval backup_dir="$backup_dir"
 git clone https://github.com/Adar-Dagan/dotfiles.git "$backup_dir"
 
 # Remove all files and directories except the .git directory
-find . -maxdepth 1 ! -name ".git" -exec rm -rf {} \;
+shopt -s extglob
+rm -rf "$backup_dir"/!(.git)
 
 # Read the file line by line
 while IFS= read -r line
