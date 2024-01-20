@@ -2,11 +2,13 @@
 
 # Define the backup directory
 backup_dir="~/temp_backup"
+eval backup_dir="$backup_dir"
 
-# Check if the backup directory exists, if not, create it
-if [ ! -d "$backup_dir" ]; then
-    mkdir "$backup_dir"
-fi
+# Clone the repository to the backup directory
+git clone https://github.com/Adar-Dagan/dotfiles.git "$backup_dir"
+
+# Remove all files and directories except the .git directory
+find . -maxdepth 1 ! -name ".git" -exec rm -rf {} \;
 
 # Read the file line by line
 while IFS= read -r line
@@ -29,7 +31,7 @@ cd "$backup_dir"
 # Check if there are any changes
 if [ -n "$(git status --porcelain)" ]; then
   # Add changes to the staging area
-  git add .
+  git add -A
 
   # Commit changes with a timestamp
   git commit -m "Backup commit $(date)"
