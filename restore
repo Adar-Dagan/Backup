@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Define the directory where the backup repository will be cloned
+clone_dir="~/Backup"
+
+# Clone the backup repository
+git clone "https://github.com/Adar-Dagan/Backup.git" "$clone_dir"
+
+# Change to the cloned directory
+cd "$clone_dir"
+
+# Get the list of files in the backup
+files=$(find . -type f)
+
+# Iterate over the files
+for file in $files; do
+  # Use rsync to restore the file to its original location
+  # The -R option is used to preserve the directory structure
+  rsync -r -R "$file" ~
+done
+
+# Remove the cloned directory
+rm -rf "$clone_dir"
+
