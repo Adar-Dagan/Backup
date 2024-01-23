@@ -8,6 +8,6 @@ if [ "$1" == "backup" ]; then
     # Add your backup code here
     :
 elif [ "$1" == "recover" ]; then
-    sudo snap install curl
+    sudo apt install curl -y
 fi
 
