@@ -29,7 +29,7 @@ def backup():
         file_path = f"./programs/{program}"
         
         print("Running " + program + " script")
-        ret = subprocess.call(['bash', file_path, 'restore', dotfiles_repo_path])
+        ret = subprocess.call(['bash', file_path, 'backup', dotfiles_repo_path])
         if ret != 0:
             print(f"{program} script failed")
             return
@@ -44,7 +44,7 @@ def backup():
     subprocess.call(['git', 'push'])
 
     print("Adding and commiting changes in dotfiles repo")
-    os.chdir(backup_repo_path)
+    os.chdir(dotfiles_repo_path)
     subprocess.call(['git', 'add', '-A'])
     subprocess.call(['git', 'commit', '-m', f'Backup {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'])
     subprocess.call(['git', 'push'])
