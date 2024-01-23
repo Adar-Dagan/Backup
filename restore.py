@@ -45,10 +45,11 @@ def restore():
             print(f"{program} script failed")
             return
 
+    print("Setting up anacron job")
     period = "7"  # This means the job will run every week
     delay = "5"  # This means the job will start 5 minutes after anacron is run
     job_identifier = "backup_job"
-    command = "wget -O -https://raw.githubusercontent.com/Adar-Dagan/Backup/master/backup | python3"  
+    command = "wget -O - https://raw.githubusercontent.com/Adar-Dagan/Backup/master/backup.py | python3"  
 
     # Create the anacron job
     os.system(f'echo "{period} {delay} {job_identifier} {command}" | sudo tee -a /etc/anacrontab')
