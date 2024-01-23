@@ -6,7 +6,7 @@ import yaml
 dotfiles_repo_path = "/home/adar/temp_dotfiles"
 
 def restore():
-    print("Starting restore")
+    print("Starting recovery")
 
     print("Updating apt")
     url = "https://raw.githubusercontent.com/Adar-Dagan/Backup/master/apt_setup"
@@ -40,7 +40,7 @@ def restore():
         script = script.read().decode("utf-8")
         
         print("Running " + program + " script")
-        ret = subprocess.call(['bash', '-c', script, 'restore', dotfiles_repo_path])
+        ret = subprocess.call(['bash', '-c', script, 'recover', dotfiles_repo_path])
         if ret != 0:
             print(f"{program} script failed")
             return
