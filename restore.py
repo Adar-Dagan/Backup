@@ -9,7 +9,7 @@ def restore():
     print("Starting restore")
 
     print("Updating apt")
-    url = "https://raw.githubusercontent.com/Adar-Dagan/Backup/master/apt_setup.sh"
+    url = "https://raw.githubusercontent.com/Adar-Dagan/Backup/master/apt_setup"
     script = urllib.request.urlopen(url)
     script = script.read().decode("utf-8")
     ret = subprocess.call(['bash', '-c', script])
