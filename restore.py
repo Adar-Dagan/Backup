@@ -3,7 +3,7 @@ import os
 import urllib.request
 import yaml
 
-dotfiles_repo_path = "/temp_dotfiles"
+dotfiles_repo_path = "/home/adar/temp_dotfiles"
 
 def restore():
     print("Starting restore")
