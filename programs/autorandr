@@ -8,7 +8,7 @@ if [ "$1" == "backup" ]; then
     rsync -a --delete ~/.config/autorandr/ "$dir_path/autorandr/"
 elif [ "$1" == "recover" ]; then
     echo "Installing autorandr..."
-    sudo apt install autorandr
+    sudo apt install autorandr -y
 
     echo "Recovering autorandr..."
     rsync -a --delete "$dir_path/autorandr/" ~/.config/autorandr/

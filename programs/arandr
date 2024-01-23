@@ -7,6 +7,6 @@ if [ "$1" == "backup" ]; then
     :
 elif [ "$1" == "recover" ]; then
     echo "Installing arandr..."
-    sudo apt install arandr
+    sudo apt install arandr -y
 fi
 
