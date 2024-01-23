@@ -18,7 +18,7 @@ def restore():
         return
 
     print("Installing git")
-    ret = subprocess.call(['sudo', 'apt', 'install', 'git'])
+    ret = subprocess.call(['sudo', 'apt', '-y', 'install', 'git'])
     if ret != 0:
         print("Failed to install git")
         return
