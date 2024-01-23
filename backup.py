@@ -3,8 +3,8 @@ import datetime
 import os
 import subprocess
 
-dotfiles_repo_path = "/temp_dotfiles"
-backup_repo_path = "/temp_backup"
+dotfiles_repo_path = "/home/adar/temp_dotfiles"
+backup_repo_path = "/home/adar/temp_backup"
 
 def backup():
     print("Starting backup")
@@ -21,8 +21,10 @@ def backup():
         print("Failed to clone backup repo")
         return
 
-    os.chdir(dotfiles_repo_path)
+    os.chdir(backup_repo_path)
 
+    print(os.listdir('.'))
+    
     programs = os.listdir('./programs')
 
     for program in programs:
@@ -33,6 +35,8 @@ def backup():
         if ret != 0:
             print(f"{program} script failed")
             return
+
+    return
 
     print("Creating program list yaml file")
     with open("programs.yaml", "w") as f:
@@ -51,8 +55,15 @@ def backup():
 
 def cleanup():
     print("Removing temp files")
-    subprocess.call(['rm', '-rf', dotfiles_repo_path])
-    subprocess.call(['rm', '-rf', backup_repo_path])
+    try:
+        subprocess.call(['rm', '-rf', dotfiles_repo_path])
+    except Exception as e:
+        print(e)
+
+    try:
+        subprocess.call(['rm', '-rf', backup_repo_path])
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     try:
