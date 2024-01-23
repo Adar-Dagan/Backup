@@ -2,6 +2,8 @@
 
 dir_path="$2"
 
+echo "in nvim script"
+
 # Check the first argument
 if [ "$1" == "backup" ]; then
     echo "Backing up nvim"
