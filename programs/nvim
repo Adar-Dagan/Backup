@@ -7,12 +7,12 @@ echo "in nvim script"
 # Check the first argument
 if [ "$1" == "backup" ]; then
     echo "Backing up nvim"
-    rsync -a --delete ~/.config/nvim/ "$dir_path/nvim"
+    rsync -a --delete ~/.config/nvim/ "$dir_path/nvim/"
 elif [ "$1" == "recover" ]; then
     echo "Installing neovim"
     sudo apt install neovim -y
 
     echo "Recovering nvim"
-    rsync -a --delete "$dir_path/nvim" ~/.config/nvim
+    rsync -a --delete "$dir_path/nvim/" ~/.config/nvim/
 fi
 

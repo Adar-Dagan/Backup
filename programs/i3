@@ -5,7 +5,7 @@ dir_path="$2"
 # Check the first argument
 if [ "$1" == "backup" ]; then
     echo "Backing up i3"
-    rsync -a --delete ~/.config/i3/ "$dir_path/i3"
+    rsync -a --delete ~/.config/i3/ "$dir_path/i3/"
 elif [ "$1" == "recover" ]; then
     echo "Installing i3"
     /usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2023.02.18_all.deb keyring.deb SHA256:a511ac5f10cd811f8a4ca44d665f2fa1add7a9f09bef238cdfad8461f5239cc4
@@ -15,6 +15,6 @@ elif [ "$1" == "recover" ]; then
     sudo apt install i3 -y
 
     echo "Recovering i3"
-    rsync -a --delete "$dir_path/i3" ~/.config/i3
+    rsync -a --delete "$dir_path/i3/" ~/.config/i3/
 fi
 

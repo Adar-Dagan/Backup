@@ -1,0 +1,20 @@
+#!/bin/bash
+
+dir_path="$2"
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    # Add your backup code here
+    :
+elif [ "$1" == "recover" ]; then
+    echo "Downloading steam..."
+    wget https://repo.steampowered.com/steam/archive/precise/steam_latest.deb
+
+    echo "Installing steam..."
+    sudo dpkg -i steam_latest.deb
+    sudo apt install -f -y
+
+    echo "Removing steam_latest.deb..."
+    rm steam_latest.deb
+fi
+
