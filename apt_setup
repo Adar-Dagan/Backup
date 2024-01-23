@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Updating the list of available packages and their versions..."
+
+# Update the list of available packages and their versions
+sudo apt update
+
+# Upgrade installed packages to their latest versions
+sudo apt upgrade -y
+
+# Remove unnecessary packages
+sudo apt autoremove -y
+
+# Clean up the local repository of retrieved package files
+sudo apt autoclean

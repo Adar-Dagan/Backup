@@ -1,0 +1,17 @@
+#!/bin/bash
+
+dir_path=$2
+eval dir_path=$dir_path
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    echo  "Backing up autorandr..."
+    rsync -a --delete ~/.config/autorandr/ "$dir_path/autorandr/"
+elif [ "$1" == "recover" ]; then
+    echo "Installing autorandr..."
+    sudo apt install autorandr
+
+    echo "Recovering autorandr..."
+    rsync -a --delete "$dir_path/autorandr/" ~/.config/autorandr/
+fi
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dir_path=$2
+eval dir_path=$dir_path
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+elif [ "$1" == "recover" ]; then
+    echo "Installing Rust"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
+

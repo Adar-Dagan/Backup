@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dir_path=$2
+eval dir_path=$dir_path
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+elif [ "$1" == "recover" ]; then
+    echo "Installing playerctl..."
+    sudo apt install playerctl
+fi
+
