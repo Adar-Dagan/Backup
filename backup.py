@@ -1,4 +1,3 @@
-import yaml
 import datetime
 import os
 import subprocess
@@ -33,15 +32,6 @@ def backup():
         if ret != 0:
             print(f"{program} script failed")
             return
-
-    print("Creating program list yaml file")
-    with open("programs.yaml", "w") as f:
-        yaml.dump(programs, f)
-
-    print("Adding and commiting changes in backup repo")
-    subprocess.call(['git', 'add', '-A'])
-    subprocess.call(['git', 'commit', '-m', 'yaml file update'])
-    subprocess.call(['git', 'push'])
 
     print("Adding and commiting changes in dotfiles repo")
     os.chdir(dotfiles_repo_path)

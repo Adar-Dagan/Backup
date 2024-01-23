@@ -3,6 +3,7 @@ import os
 import urllib.request
 import yaml
 
+backup_repo_path = "/home/adar/temp_backup"
 dotfiles_repo_path = "/home/adar/temp_dotfiles"
 
 def restore():
@@ -29,20 +30,25 @@ def restore():
         print("Failed to clone dotfiles repo")
         return
 
-    print("Getting program list yaml file")
-    url = "https://raw.githubusercontent.com/Adar-Dagan/Backup/master/programs.yaml"
-    yaml_file = urllib.request.urlopen(url)
-    programs = yaml.safe_load(yaml_file)
+    print("Cloning backup repo")
+    ret = subprocess.call(['git', 'clone', 'https://github.com/Adar-Dagan/Backup.git', backup_repo_path])
+    if ret != 0:
+        print("Failed to clone backup repo")
+        return
 
+    print("Changing to directory to backup repo")
+    os.chdir(backup_repo_path)
+
+    print("Getting programs to install")
+    programs = os.listdir("./programs")
+
+    print("Installing programs")
     for program in programs:
-        url = f"https://raw.githubusercontent.com/Adar-Dagan/Backup/master/programs/{program}"
-        script = urllib.request.urlopen(url)
-        script = script.read().decode("utf-8")
+        file_path = f"./programs/{program}"
         
         print("Running " + program + " script")
-        ret = subprocess.run(['bash', '-c', script, 'recover', dotfiles_repo_path], capture_output=True)
-        print(ret.stdout.decode("utf-8"))
-        if ret.returncode != 0:
+        ret = subprocess.call(['bash', file_path, 'recover', dotfiles_repo_path])
+        if ret != 0:
             print(f"{program} script failed")
             return
 
@@ -58,7 +64,16 @@ def restore():
 
 def cleanup():
     print("Removing temp files")
-    subprocess.call(['rm', '-rf', dotfiles_repo_path])
+    try:
+        subprocess.call(['rm', '-rf', dotfiles_repo_path])
+    except Exception as e:
+        print(e)
+
+    try:
+        subprocess.call(['rm', '-rf', backup_repo_path])
+    except Exception as e:
+        print(e)
+
 
 if __name__ == "__main__":
     try:
