@@ -4,6 +4,7 @@ dir_path="$2"
 
 # Check the first argument
 if [ "$1" == "backup" ]; then
+    # Add your backup code here
 elif [ "$1" == "recover" ]; then
     echo "Installing Rust"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

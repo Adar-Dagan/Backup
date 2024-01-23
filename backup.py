@@ -31,7 +31,7 @@ def backup():
         file_path = f"./programs/{program}"
         
         print("Running " + program + " script")
-        ret = subprocess.call(['python3', file_path, 'restore', dotfiles_repo_path])
+        ret = subprocess.call(['python3', file_path, 'restore', dotfiles_repo_path], executable='/bin/bash')
         if ret != 0:
             print(f"{program} script failed")
             return
