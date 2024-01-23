@@ -40,7 +40,7 @@ def restore():
         script = script.read().decode("utf-8")
         
         print("Running " + program + " script")
-        ret = subprocess.call(['python3', '-c', script, 'restore', dotfiles_repo_path])
+        ret = subprocess.call(['bash', '-c', script, 'restore', dotfiles_repo_path])
         if ret != 0:
             print(f"{program} script failed")
             return
