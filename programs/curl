@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dir_path=$2
+eval dir_path=$dir_path
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    # Add your backup code here
+    :
+elif [ "$1" == "recover" ]; then
+    sudo snap install curl
+fi
+
