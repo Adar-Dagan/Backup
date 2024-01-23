@@ -23,20 +23,16 @@ def backup():
 
     os.chdir(backup_repo_path)
 
-    print(os.listdir('.'))
-    
     programs = os.listdir('./programs')
 
     for program in programs:
         file_path = f"./programs/{program}"
         
         print("Running " + program + " script")
-        ret = subprocess.call(['python3', file_path, 'restore', dotfiles_repo_path], executable='/bin/bash')
+        ret = subprocess.call(['bash', file_path, 'restore', dotfiles_repo_path])
         if ret != 0:
             print(f"{program} script failed")
             return
-
-    return
 
     print("Creating program list yaml file")
     with open("programs.yaml", "w") as f:
