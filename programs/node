@@ -1,0 +1,18 @@
+#!/bin/bash
+
+dir_path="$2"
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    # Add your backup code here
+    :
+elif [ "$1" == "recover" ]; then
+    echo "Installing fnm"
+    curl -fsSL https://fnm.vercel.app/install | bash
+
+    source /home/adar/.bashrc
+
+    echo "Installing node"
+    fnm install --lts
+fi
+

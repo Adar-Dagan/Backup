@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dir_path="$2"
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    # Add your backup code here
+    :
+elif [ "$1" == "recover" ]; then
+    echo "Installing gcc"
+    sudo apt install gcc -y
+fi
+

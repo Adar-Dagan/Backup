@@ -1,0 +1,14 @@
+#!/bin/bash
+
+dir_path="$2"
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    # Add your backup code here
+    :
+elif [ "$1" == "recover" ]; then
+    echo "Setting up git"
+    git config --global user.email "AdarDagan@outlook.com"
+    git config --global user.name "Adar Dagan"
+fi
+
