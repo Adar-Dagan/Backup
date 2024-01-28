@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dir_path="$2"
+
+# Check the first argument
+if [ "$1" == "backup" ]; then
+    :
+elif [ "$1" == "recover" ]; then
+    echo "Installing numlockx..."
+    sudo apt install numlockx -y
+fi
+
